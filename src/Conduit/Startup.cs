@@ -101,10 +101,7 @@ namespace Conduit
                     opt.Filters.Add(typeof(ValidatorActionFilter));
                     opt.EnableEndpointRouting = false;
                 })
-                .AddJsonOptions(opt =>
-                {
-                    opt.JsonSerializerOptions.IgnoreNullValues = true;
-                })
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .AddFluentValidation(cfg =>
                 {
                     cfg.RegisterValidatorsFromAssemblyContaining<Startup>();
